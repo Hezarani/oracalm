@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "oracalm"
+version = "0.1.0"
+description = "Open, dependency-free scoring for validated dental-anxiety instruments (MDAS, Corah DAS, MCDASf), with multilingual item sets."
+readme = "README.md"
+requires-python = ">=3.8"
+license = { text = "MIT" }
+authors = [{ name = "Hossein Boustani Hezarani" }]
+keywords = ["dentistry", "dental anxiety", "MDAS", "psychometrics", "oral health", "screening", "questionnaire"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Healthcare Industry",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Topic :: Scientific/Engineering :: Medical Science Apps.",
+]
+
+[project.urls]
+Homepage = "https://github.com/Hezarani/oracalm"
+Repository = "https://github.com/Hezarani/oracalm"
+Issues = "https://github.com/Hezarani/oracalm/issues"
+
+[project.scripts]
+oracalm = "oracalm.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["oracalm*"]

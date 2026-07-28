@@ -1,0 +1,68 @@
+cff-version: 1.2.0
+message: "If you use OraCalm, please cite this software AND the original instrument(s) you used."
+title: "OraCalm: open, multilingual scoring for validated dental-anxiety instruments"
+abstract: >-
+  OraCalm is a dependency-free Python library, command-line tool, and web demo
+  that scores widely used, validated dental-anxiety instruments (MDAS, Corah's
+  DAS, and the faces version of the MCDAS), applying their published cut-offs
+  and interpretation bands with full source attribution and multilingual item
+  sets. It is an educational/research aid, not a diagnostic device.
+type: software
+authors:
+  - family-names: "Boustani Hezarani"
+    given-names: "Hossein"
+    orcid: "https://orcid.org/0009-0007-8481-0498"
+version: "0.1.0"
+date-released: "2026-07-28"
+license: MIT
+repository-code: "https://github.com/Hezarani/oracalm"
+url: "https://github.com/Hezarani/oracalm"
+keywords:
+  - dentistry
+  - dental anxiety
+  - psychometrics
+  - screening
+  - MDAS
+  - oral health
+  - patient-reported outcome
+references:
+  - type: article
+    authors:
+      - family-names: Humphris
+        given-names: "Gerald M"
+      - family-names: Morrison
+        given-names: "T"
+      - family-names: Lindsay
+        given-names: "Stephen J E"
+    title: "The Modified Dental Anxiety Scale: validation and United Kingdom norms"
+    journal: "Community Dental Health"
+    year: 1995
+    volume: "12"
+    issue: "3"
+    start: 143
+    end: 150
+  - type: article
+    authors:
+      - family-names: Corah
+        given-names: "Norman L"
+    title: "Development of a dental anxiety scale"
+    journal: "Journal of Dental Research"
+    year: 1969
+    volume: "48"
+    issue: "4"
+    start: 596
+    doi: "10.1177/00220345690480041801"
+  - type: article
+    authors:
+      - family-names: Howard
+        given-names: "Kim E"
+      - family-names: Freeman
+        given-names: "Ruth"
+    title: "Reliability and validity of a faces version of the Modified Child Dental Anxiety Scale"
+    journal: "International Journal of Paediatric Dentistry"
+    year: 2007
+    volume: "17"
+    issue: "4"
+    start: 281
+    end: 288
+    doi: "10.1111/j.1365-263X.2007.00830.x"
