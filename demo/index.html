@@ -12,9 +12,10 @@
     --green:#2e9e6b; --amber:#cf8f22; --red:#d5544e;
     --shadow-sm:0 1px 2px rgba(18,48,58,.05);
     --shadow-lg:0 2px 6px rgba(18,48,58,.05),0 18px 40px rgba(18,48,58,.10);
-    /* critically-damped "settle" easing — calm, no overshoot (apple-design §4) */
+    /* shared easing vocabulary — ease-out for entrances/moves, settle for value changes */
+    --ease-out:cubic-bezier(.23,1,.32,1);
     --ease-settle:cubic-bezier(.22,.61,.36,1);
-    --press:transform 110ms var(--ease-settle), background 140ms ease, border-color 140ms ease, color 140ms ease;
+    --press:transform 120ms var(--ease-out), color 150ms ease, border-color 150ms ease, background 150ms ease;
   }
   *{box-sizing:border-box}
   html{-webkit-text-size-adjust:100%}
@@ -22,7 +23,7 @@
     background:linear-gradient(180deg,var(--bg-1),var(--bg-2)) fixed;
     font:100%/1.5 system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
     -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
-  .wrap{max-width:760px;margin:0 auto;padding:30px 18px 120px;animation:appear .5s var(--ease-settle) both}
+  .wrap{max-width:760px;margin:0 auto;padding:30px 18px 120px;animation:appear .5s var(--ease-out) both}
   @keyframes appear{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 
   header h1{margin:0;font-size:clamp(28px,6vw,34px);font-weight:700;letter-spacing:-.6px;line-height:1.04}
@@ -35,13 +36,17 @@
   .panel{background:var(--card);border:1px solid var(--line);border-radius:18px;
     box-shadow:var(--shadow-sm);padding:18px;margin-top:18px}
 
-  .seg{display:flex;flex-wrap:wrap;gap:8px}
-  .seg button{flex:1;min-width:130px;border:1px solid var(--line);background:#fff;color:var(--ink);
-    border-radius:12px;padding:11px 12px;font-size:14px;font-weight:600;cursor:pointer;transition:var(--press);text-align:center}
-  .seg button small{display:block;font-weight:500;color:var(--muted);font-size:11.5px;margin-top:2px;transition:color 140ms ease}
-  .seg button:hover{border-color:#bcd3da}
+  /* Segmented control with a sliding indicator (spatial continuity) */
+  .seg{position:relative;display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+  .seg-ind{position:absolute;top:0;left:0;height:100%;border-radius:12px;background:var(--brand);
+    box-shadow:0 6px 16px rgba(44,140,156,.28);z-index:0;opacity:0;
+    transition:transform .28s var(--ease-out),width .28s var(--ease-out),opacity .2s ease;will-change:transform,width}
+  .seg-ind.ready{opacity:1}
+  .seg button{position:relative;z-index:1;border:1px solid var(--line);background:#fff;color:var(--ink);
+    border-radius:12px;padding:11px 10px;font-size:14px;font-weight:600;cursor:pointer;transition:var(--press);text-align:center}
+  .seg button small{display:block;font-weight:500;color:var(--muted);font-size:11.5px;margin-top:2px;transition:color 150ms ease}
   .seg button:active{transform:scale(.97)}
-  .seg button[aria-pressed="true"]{border-color:var(--brand);background:var(--brand);color:#fff;box-shadow:0 6px 16px rgba(44,140,156,.28)}
+  .seg button[aria-pressed="true"]{border-color:transparent;background:transparent;color:#fff}
   .seg button[aria-pressed="true"] small{color:#e9f5f7}
 
   .langrow{display:flex;gap:8px;align-items:center;margin-top:12px;font-size:13.5px;color:var(--muted);flex-wrap:wrap}
@@ -50,7 +55,9 @@
   .chip[aria-pressed="true"]{border-color:var(--brand);background:var(--brand);color:#fff}
   .prompt{color:var(--muted);font-size:14.5px;margin:12px 0 0}
 
-  .item{padding:15px 0;border-top:1px solid var(--line)}
+  /* Item entrance — gentle stagger, keyed to the instrument (bridges the swap) */
+  @keyframes itemIn{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+  .item{padding:15px 0;border-top:1px solid var(--line);animation:itemIn .42s var(--ease-out) both;animation-delay:calc(var(--i,0)*34ms)}
   .item:first-child{border-top:none}
   .qhead{display:flex;gap:11px;align-items:flex-start}
   .qnum{flex:none;width:25px;height:25px;border-radius:50%;background:#e9f3f5;color:var(--brand-d);
@@ -60,14 +67,13 @@
   .opts.stack{flex-direction:column}
   .opt{border:1px solid var(--line);background:#fff;border-radius:10px;padding:9px 13px;font-size:13.5px;
     cursor:pointer;transition:var(--press);text-align:start;color:var(--ink);position:relative}
-  .opt .n{font-weight:700;margin-inline-end:7px;color:var(--muted);transition:color 140ms ease}
+  .opt .n{font-weight:700;margin-inline-end:7px;color:var(--muted);transition:color 150ms ease}
   .opts:not(.stack) .opt{min-width:46px;text-align:center}
-  .opt:hover{border-color:#bcd3da}
   .opt:active{transform:scale(.96)}
   .opt[aria-pressed="true"]{border-color:var(--brand);background:var(--brand);color:#fff;box-shadow:0 5px 14px rgba(44,140,156,.26)}
   .opt[aria-pressed="true"] .n{color:#e9f5f7}
 
-  /* Result — translucent floating material, content scrolls beneath (apple-design §12) */
+  /* Result — translucent floating material, content scrolls beneath */
   .result{position:sticky;bottom:16px;margin-top:20px;
     background:rgba(255,255,255,.72);backdrop-filter:blur(22px) saturate(180%);-webkit-backdrop-filter:blur(22px) saturate(180%);
     border:1px solid rgba(255,255,255,.6);box-shadow:var(--shadow-lg)}
@@ -79,30 +85,40 @@
   .score small{font-size:16px;color:var(--muted);font-weight:600;letter-spacing:0}
   .scoreVal{display:inline-block;animation:settle .42s var(--ease-settle) both}
   @keyframes settle{from{opacity:.35;transform:scale(.94)}to{opacity:1;transform:none}}
-  .band{font-weight:700;font-size:16px;letter-spacing:-.2px;transition:color 200ms ease}
+  .band{font-weight:700;font-size:16px;letter-spacing:-.2px;transition:color 220ms ease}
   .desc{color:var(--muted);font-size:13.5px}
   .meter{height:10px;border-radius:999px;background:#e7eef1;overflow:hidden;margin:14px 0 4px}
   .meter > i{display:block;height:100%;border-radius:999px;will-change:width;
-    transition:width .55s var(--ease-settle),background-color .35s ease}
+    transition:width .55s var(--ease-out),background-color .35s ease}
   .flags{margin:12px 0 0;padding:0;list-style:none}
   .flags li{font-size:13px;font-weight:600;color:var(--red);background:rgba(213,84,78,.09);border:1px solid rgba(213,84,78,.24);
-    border-radius:10px;padding:7px 11px;margin-top:7px;animation:settle .4s var(--ease-settle) both}
+    border-radius:10px;padding:7px 11px;margin-top:7px;animation:settle .4s var(--ease-out) both}
   .cite{margin-top:13px;font-size:12.5px;color:var(--muted);border-top:1px dashed var(--line);padding-top:11px}
   .cite a{color:var(--brand-d);text-decoration:none;border-bottom:1px solid rgba(28,100,114,.3)}
   .btn{border:1px solid var(--line);background:#fff;border-radius:10px;padding:9px 15px;font-weight:600;
     cursor:pointer;font-size:13.5px;color:var(--ink);transition:var(--press)}
-  .btn:hover{border-color:#bcd3da}
   .btn:active{transform:scale(.96)}
 
   .disc{font-size:12px;color:var(--muted);margin-top:20px;text-align:center;line-height:1.6;max-width:60ch;margin-inline:auto}
   footer{margin-top:20px;text-align:center;font-size:12.5px;color:var(--muted)}
   footer a{color:var(--brand-d);text-decoration:none}
-  @media (max-width:520px){ .opts{margin-inline-start:0} .qnum{width:22px;height:22px} }
+  @media (max-width:520px){ .opts{margin-inline-start:0} .qnum{width:22px;height:22px} .seg button{font-size:13px} }
 
-  /* Accessibility signals (apple-design §14) */
+  /* Hover only where a real pointer exists (apple-design §10 / frequency gating) */
+  @media (hover:hover) and (pointer:fine){
+    .seg button:hover:not([aria-pressed="true"]){border-color:#bcd3da}
+    .chip:hover:not([aria-pressed="true"]){border-color:#bcd3da}
+    .opt:hover:not([aria-pressed="true"]){border-color:#bcd3da}
+    .btn:hover{border-color:#bcd3da}
+    .cite a:hover{border-bottom-color:var(--brand-d)}
+  }
+
+  /* Accessibility signals — gentler, not zero (apple-design §14) */
   @media (prefers-reduced-motion:reduce){
-    *{animation-duration:.001ms!important;transition-duration:.001ms!important}
-    .meter>i{transition:none}
+    .wrap,.item,.scoreVal,.flags li{animation:none}
+    .seg-ind{transition:opacity .2s ease}
+    .meter>i{transition:background-color .3s ease}
+    *{transition-duration:.001ms}
   }
   @media (prefers-reduced-transparency:reduce){
     .result{background:#fff;backdrop-filter:none;-webkit-backdrop-filter:none}
@@ -121,7 +137,7 @@
 <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
 <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.2/babel.min.js"></script>
 <script type="text/babel">
-const { useState } = React;
+const { useState, useRef, useLayoutEffect, useEffect } = React;
 
 const SCALE_MDAS = {
   en:["Not anxious","Slightly anxious","Fairly anxious","Very anxious","Extremely anxious"],
@@ -199,6 +215,7 @@ const INSTRUMENTS = {
 const BAND_COLORS = ["var(--green)","var(--amber)","var(--red)","var(--red)"];
 const optionsFor = (inst,i,lang)=> inst.perItemOptions ? inst.perItemOptions[i] : (inst.sharedScale[lang]||inst.sharedScale.en);
 const bandFor = (inst,total)=>{ const i=inst.bands.findIndex(b=>total>=b[0]&&total<=b[1]); return {index:i,label:i<0?"":inst.bands[i][2]}; };
+const IDS = Object.keys(INSTRUMENTS);
 
 function App(){
   const [iid,setIid]=useState("mdas");
@@ -207,6 +224,15 @@ function App(){
   const inst=INSTRUMENTS[iid];
   const effLang=inst.langs.includes(lang)?lang:"en";
   const rtl=effLang==="fa";
+
+  // Sliding segmented indicator — measured from the active button (spatial continuity)
+  const segRef=useRef(null); const btnRefs=useRef({});
+  const [ind,setInd]=useState({left:0,width:0,ready:false});
+  const measure=()=>{ const el=btnRefs.current[iid], box=segRef.current;
+    if(el&&box){ const p=box.getBoundingClientRect(), b=el.getBoundingClientRect();
+      setInd({left:b.left-p.left,width:b.width,ready:true}); } };
+  useLayoutEffect(measure,[iid]);
+  useEffect(()=>{ window.addEventListener("resize",measure); return ()=>window.removeEventListener("resize",measure); });
 
   const pick=id=>{setIid(id);setAns({});if(!INSTRUMENTS[id].langs.includes(lang))setLang("en");};
   const answered=inst.items.map((_,i)=>ans[i]).filter(v=>v!=null);
@@ -227,12 +253,14 @@ function App(){
       </header>
 
       <div className="panel">
-        <div className="seg" role="group" aria-label="Choose instrument">
-          {Object.values(INSTRUMENTS).map(x=>(
-            <button key={x.id} aria-pressed={iid===x.id} onClick={()=>pick(x.id)}>
+        <div className="seg" ref={segRef} role="group" aria-label="Choose instrument">
+          <span className={"seg-ind"+(ind.ready?" ready":"")} aria-hidden="true"
+            style={{transform:`translateX(${ind.left}px)`,width:ind.width+"px"}}></span>
+          {IDS.map(id=>{ const x=INSTRUMENTS[id]; return (
+            <button key={id} ref={el=>btnRefs.current[id]=el} aria-pressed={iid===id} onClick={()=>pick(id)}>
               {x.name}<small>{x.pop}</small>
             </button>
-          ))}
+          );})}
         </div>
         {inst.langs.length>1 && (
           <div className="langrow">
@@ -245,12 +273,12 @@ function App(){
         <p className="prompt">{inst.prompt[effLang]||inst.prompt.en}</p>
       </div>
 
-      <div className="panel">
+      <div className="panel" key={iid}>
         {inst.items.map((it,i)=>{
           const opts=optionsFor(inst,i,effLang);
           const longOpts=!!inst.perItemOptions;
           return (
-            <div className="item" key={i}>
+            <div className="item" key={i} style={{"--i":i}}>
               <div className="qhead"><span className="qnum">{i+1}</span><span className="qtext">{it[effLang]||it.en}</span></div>
               <div className={"opts"+(longOpts?" stack":"")} role="group">
                 {opts.map((label,idx)=>{

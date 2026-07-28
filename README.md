@@ -1,18 +1,25 @@
 <div align="center">
 
+<img src="assets/banner.png" alt="OraCalm — open, multilingual scoring for validated dental-anxiety instruments: MDAS, Corah's DAS, and MCDASf" width="880">
+
 # OraCalm
 
-**Open, dependency-free scoring for validated dental-anxiety instruments — with multilingual item sets.**
+**Open, dependency-free scoring for validated dental-anxiety instruments — the Modified Dental Anxiety Scale (MDAS), Corah's Dental Anxiety Scale, and the child faces MCDASf — with multilingual item sets, published cut-offs, and a live web demo.**
 
+[![PyPI](https://img.shields.io/pypi/v/oracalm.svg?color=2c8c9c&label=PyPI)](https://pypi.org/project/oracalm/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-informational.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/python-3.8%2B-blue.svg)](https://www.python.org/)
 [![Tests](https://img.shields.io/badge/tests-43%20passing-brightgreen.svg)](tests/)
-[![Status](https://img.shields.io/badge/status-beta-orange.svg)](#roadmap)
+[![DOI](https://img.shields.io/badge/DOI-pending%20(Zenodo)-lightgrey.svg)](#citing-oracalm)
+
+<sub>dental anxiety · MDAS · Corah DAS · MCDASf · dental phobia · psychometrics · screening · oral health · patient-reported outcome · odontophobia</sub>
 
 </div>
 
 > [!IMPORTANT]
 > **OraCalm is an educational and research aid, not a diagnostic device.** It computes published scoring keys for **screening** only. It does not diagnose dental anxiety or phobia, stores no personal data, and never replaces clinical judgement or the original instruments' manuals.
+
+**Contents** · [Why](#why-oracalm) · [Instruments](#instruments) · [Install](#install) · [Python API](#quick-start-python) · [CLI](#command-line) · [Web demo](#web-demo) · [Provenance & licensing](#provenance--licensing) · [Publishing & DOI](#publishing--doi) · [Cite](#citing-oracalm) · [References](#references)
 
 ---
 
@@ -108,9 +115,13 @@ If you plan **commercial** redistribution, verify the reuse terms of each instru
 - Additional validated language sets (contributions welcome, with a citation per translation).
 - A `CITATION.cff`-linked Zenodo DOI on first tagged release.
 
+## Publishing & DOI
+
+Maintainer notes for releasing OraCalm live on GitHub, PyPI, and Zenodo — a full copy-paste walkthrough — are in **[`PUBLISHING.md`](PUBLISHING.md)**. In short: push to GitHub, upload the `assets/social-preview.png` as the repo's social preview, set the GitHub *About* description and topics for discoverability, publish to PyPI, then connect Zenodo and tag a Release to mint a citable DOI (after which the DOI badge above is replaced with the real one).
+
 ## Citing OraCalm
 
-If OraCalm supports your work, please cite the software (see [`CITATION.cff`](CITATION.cff)) **and** the original instrument(s) you used (see below).
+If OraCalm supports your work, please cite the software (see [`CITATION.cff`](CITATION.cff)) **and** the original instrument(s) you used (see below). Once a Zenodo DOI is minted it will appear here and in `CITATION.cff`.
 
 ## References
 

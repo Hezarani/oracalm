@@ -1,0 +1,25 @@
+{
+  "title": "OraCalm: open, multilingual scoring for validated dental-anxiety instruments",
+  "description": "OraCalm is a dependency-free Python library, command-line tool, and self-contained web demo that scores validated dental-anxiety instruments (the Modified Dental Anxiety Scale, Corah's Dental Anxiety Scale, and the faces version of the Modified Child Dental Anxiety Scale) using their published cut-offs and interpretation bands, with multilingual item sets. It is an educational and research aid, not a diagnostic device.",
+  "upload_type": "software",
+  "access_right": "open",
+  "license": "MIT",
+  "creators": [
+    {
+      "name": "Boustani Hezarani, Hossein",
+      "orcid": "0009-0007-8481-0498"
+    }
+  ],
+  "keywords": [
+    "dentistry",
+    "dental anxiety",
+    "dental phobia",
+    "MDAS",
+    "Corah Dental Anxiety Scale",
+    "MCDAS",
+    "psychometrics",
+    "screening",
+    "oral health",
+    "patient-reported outcome"
+  ]
+}
