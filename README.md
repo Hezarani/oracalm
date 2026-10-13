@@ -10,7 +10,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-informational.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/python-3.8%2B-blue.svg)](https://www.python.org/)
 [![Tests](https://img.shields.io/badge/tests-43%20passing-brightgreen.svg)](tests/)
-[![DOI](https://img.shields.io/badge/DOI-pending%20(Zenodo)-lightgrey.svg)](#citing-oracalm)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21704085.svg)](https://doi.org/10.5281/zenodo.21704085)
 
 <sub>dental anxiety · MDAS · Corah DAS · MCDASf · dental phobia · psychometrics · screening · oral health · patient-reported outcome · odontophobia</sub>
 
@@ -19,7 +19,7 @@
 > [!IMPORTANT]
 > **OraCalm is an educational and research aid, not a diagnostic device.** It computes published scoring keys for **screening** only. It does not diagnose dental anxiety or phobia, stores no personal data, and never replaces clinical judgement or the original instruments' manuals.
 
-**Contents** · [Why](#why-oracalm) · [Instruments](#instruments) · [Install](#install) · [Python API](#quick-start-python) · [CLI](#command-line) · [Web demo](#web-demo) · [Provenance & licensing](#provenance--licensing) · [Publishing & DOI](#publishing--doi) · [Cite](#citing-oracalm) · [References](#references)
+**Contents** · [Why](#why-oracalm) · [Instruments](#instruments) · [Install](#install) · [Python API](#quick-start-python) · [CLI](#command-line) · [Web demo](#web-demo) · [Provenance & licensing](#provenance--licensing) · [Publishing & DOI](#publishing--doi) · [Cite](#citing-oracalm) · [References & prior work](#references--prior-work)
 
 ---
 
@@ -40,7 +40,7 @@ The scoring keys and cut-offs are facts; item wording is reproduced from the pub
 ## Install
 
 ```bash
-pip install oracalm          # once published to PyPI
+pip install oracalm
 # or, from a clone:
 pip install -e .
 ```
@@ -113,25 +113,41 @@ If you plan **commercial** redistribution, verify the reuse terms of each instru
 
 - IDAF-4C+ (Index of Dental Anxiety and Fear) once reuse terms are confirmed.
 - Additional validated language sets (contributions welcome, with a citation per translation).
-- A `CITATION.cff`-linked Zenodo DOI on first tagged release.
 
 ## Publishing & DOI
 
-Maintainer notes for releasing OraCalm live on GitHub, PyPI, and Zenodo — a full copy-paste walkthrough — are in **[`PUBLISHING.md`](PUBLISHING.md)**. In short: push to GitHub, upload the `assets/social-preview.png` as the repo's social preview, set the GitHub *About* description and topics for discoverability, publish to PyPI, then connect Zenodo and tag a Release to mint a citable DOI (after which the DOI badge above is replaced with the real one).
+Maintainer notes for releasing OraCalm live on GitHub, PyPI, and Zenodo — a full copy-paste walkthrough — are in **[`PUBLISHING.md`](PUBLISHING.md)**. In short: push to GitHub, upload the `assets/social-preview.png` as the repo's social preview, set the GitHub *About* description and topics for discoverability, publish to PyPI, then connect Zenodo and tag a Release to mint a citable DOI (done for v0.1.0 — see the DOI badge above).
 
 ## Citing OraCalm
 
-If OraCalm supports your work, please cite the software (see [`CITATION.cff`](CITATION.cff)) **and** the original instrument(s) you used (see below). Once a Zenodo DOI is minted it will appear here and in `CITATION.cff`.
+If OraCalm supports your work, please cite the software (see [`CITATION.cff`](CITATION.cff); v0.1.0 is archived at [doi:10.5281/zenodo.21704085](https://doi.org/10.5281/zenodo.21704085)) **and** the original instrument(s) you used (see below).
 
-## References
+## References & prior work
 
-Instrument sources (retrieved via **PubMed**; DOIs/PMIDs linked):
+Instrument sources were retrieved via **PubMed**; DOIs/PMIDs are linked. Please cite the original instrument(s) alongside OraCalm.
 
-- Humphris GM, Morrison T, Lindsay SJE. The Modified Dental Anxiety Scale: validation and United Kingdom norms. *Community Dent Health.* 1995;12(3):143–150. [PMID 7584581](https://pubmed.ncbi.nlm.nih.gov/7584581/)
-- Corah NL. Development of a dental anxiety scale. *J Dent Res.* 1969;48(4):596. [doi:10.1177/00220345690480041801](https://doi.org/10.1177/00220345690480041801)
-- Howard KE, Freeman R. Reliability and validity of a faces version of the Modified Child Dental Anxiety Scale. *Int J Paediatr Dent.* 2007;17(4):281–288. [doi:10.1111/j.1365-263X.2007.00830.x](https://doi.org/10.1111/j.1365-263X.2007.00830.x)
+**Methods and instruments it implements**
 
-Recent validations motivating multilingual support: Höglund et al., *Acta Odontol Scand.* 2024 (Swedish MDAS) [doi:10.2340/aos.v83.42436](https://doi.org/10.2340/aos.v83.42436); Enshaei et al., *Clin Exp Dent Res.* 2024 (Persian child measure) [doi:10.1002/cre2.830](https://doi.org/10.1002/cre2.830).
+- Humphris, G.M., Morrison, T. & Lindsay, S.J.E. (1995). The Modified Dental Anxiety Scale: validation and United Kingdom norms. *Community Dental Health* 12(3):143–150. [PMID 7584581](https://pubmed.ncbi.nlm.nih.gov/7584581/) (no DOI)
+- Corah, N.L. (1969). Development of a dental anxiety scale. *Journal of Dental Research* 48(4):596. [doi:10.1177/00220345690480041801](https://doi.org/10.1177/00220345690480041801)
+- Corah, N.L., Gale, E.N. & Illig, S.J. (1978). Assessment of a dental anxiety scale. *Journal of the American Dental Association* 97(5):816–819. [doi:10.14219/jada.archive.1978.0394](https://doi.org/10.14219/jada.archive.1978.0394)
+- Wong, H.M., Humphris, G.M. & Lee, G.T.R. (1998). Preliminary validation and reliability of the Modified Child Dental Anxiety Scale. *Psychological Reports* 83(3 Pt 2):1179–1186. [doi:10.2466/pr0.1998.83.3f.1179](https://doi.org/10.2466/pr0.1998.83.3f.1179)
+- Howard, K.E. & Freeman, R. (2007). Reliability and validity of a faces version of the Modified Child Dental Anxiety Scale. *International Journal of Paediatric Dentistry* 17(4):281–288. [doi:10.1111/j.1365-263X.2007.00830.x](https://doi.org/10.1111/j.1365-263X.2007.00830.x)
+
+**Validated translations (check the Turkish and Persian MDAS item sets against these)**
+
+- Tunc, E.P. et al. (2005). Reliability and validity of the Modified Dental Anxiety Scale (MDAS) in a Turkish population. *Community Dentistry and Oral Epidemiology* 33(5):357–362. [doi:10.1111/j.1600-0528.2005.00229.x](https://doi.org/10.1111/j.1600-0528.2005.00229.x)
+- Ilgüy, D. et al. (2005). Reliability and validity of the Modified Dental Anxiety Scale in Turkish patients. *Journal of International Medical Research* 33(2):252–259. [doi:10.1177/147323000503300214](https://doi.org/10.1177/147323000503300214)
+- Lin, C.-Y. et al. (2021). Psychometric testing of the Modified Dental Anxiety Scale among Iranian adolescents during COVID-19 pandemic. *European Journal of Investigation in Health, Psychology and Education* 11(4):1269–1279. [doi:10.3390/ejihpe11040092](https://doi.org/10.3390/ejihpe11040092)
+
+**Evidence that motivated it (multilingual support)**
+
+- Höglund, M. et al. (2024). Cross-cultural adaptation and validation of the Swedish version of the Modified Dental Anxiety Scale. *Acta Odontologica Scandinavica* 83:666–671. [doi:10.2340/aos.v83.42436](https://doi.org/10.2340/aos.v83.42436)
+- Enshaei, Z., Kaji, K.S. & Saied-Moallemi, Z. (2024). Development and validation of the Iranian version of the Children's Experiences of Dental Anxiety Measure (CEDAM). *Clinical and Experimental Dental Research* 10(1):e830. [doi:10.1002/cre2.830](https://doi.org/10.1002/cre2.830)
+
+**Planned instrument (see [Roadmap](#roadmap))**
+
+- Armfield, J.M. (2010). Development and psychometric evaluation of the Index of Dental Anxiety and Fear (IDAF-4C+). *Psychological Assessment* 22(2):279–287. [doi:10.1037/a0018678](https://doi.org/10.1037/a0018678)
 
 ## Contributing
 
